@@ -1,0 +1,79 @@
+ <div class="container mt-5">
+    <div class="col-lg-8 offset-lg-2">
+        <div class="card">
+            <div class="card-body ">
+                <h3 class="titulo">Devices</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+   <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+               <h5 class="titulo">{{accion|uppercase}} Device</h5> 
+
+               <form [formGroup]="form" (ngSubmit)="saveDevice()">
+                <div class="input-group input-group-lg mb-2">                   
+                    <input  formControlName="vendor" type="text" class="form-control" placeholder="Vendor" >
+                  </div>
+                  <div class="input-group input-group-lg mb-2">                   
+                    <input formControlName="dateCreated"  type="text" class="form-control" placeholder="Date of Created" >
+                  </div>
+                  <div class="input-group input-group-lg mb-2">                   
+                    <input formControlName="status"  type="text" class="form-control" placeholder="Status" >
+                  </div>
+                  <div class="input-group input-group-lg mb-2">                   
+                    <input formControlName="gatewaySerialNumber"  type="text" class="form-control" placeholder="Serial Number of Gateway" >
+                  </div>
+                 
+                  <div class="d-grid gap-2">
+                     <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                        <i class="fa-solid fa-database"></i>&nbsp;Save</button>
+                  </div>                
+               </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+               <h5 class="titulo">List of Devices</h5> 
+               <table class="table"> 
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Vendor</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Date of Created</th>
+                        <th scope="col">Serial Number</th>
+                   
+                    </tr>
+                  </thead>
+                
+                   <tbody>
+                       <tr *ngFor="let listDevice of listDevices">
+                            <td>{{listDevice.uid}} </td>   
+                            <td>{{listDevice.vendor}} </td>
+                            <td>{{listDevice.status}}</td>
+                            <td>{{listDevice.dateCreated}}</td>
+                            <td>{{listDevice.gatewaySerialNumber}}</td>
+                  
+                           <td>
+                               <button class="btn btn-success" (click)="editDevice(listDevice)">Edit</button>                               
+                           </td>
+                           <td>
+                           <button class="btn btn-danger" (click)="deleteDevice(listDevice.uid)">Delete</button>
+                           </td>
+                         
+                       </tr>
+                       
+                   </tbody>
+               </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+

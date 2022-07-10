@@ -1,0 +1,111 @@
+<div class="container mt-5">
+    <div class="col-lg-10 offset-lg-2">
+        <div class="card" >
+            <div class="card-body " >
+                <h3 class="titulo" style="align-items: center;">Gateways</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-1">
+    <div class="col-lg-10" style="flex-direction: row; align-content: space-between;align-items: center; display: inline;">
+        <div class="card">
+            <div class="card-body"> 
+                <h5 class="titulo">{{accion|uppercase}} Gateways</h5> 
+
+               <form [formGroup]="form" (ngSubmit)="saveGateway()">
+                <div class="input-group input-group-lg mb-3">                   
+                    <input  formControlName="name" type="text" class="form-control" placeholder="name" >
+                  </div>
+                  <div class="input-group input-group-lg mb-3">                   
+                    <input formControlName="ipV4"  type="text" class="form-control" placeholder="ipV4" >
+                  </div>
+                 
+                  <div class="d-grid gap-2">
+                     <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                        <i class="fa-solid fa-database"></i>&nbsp;Save</button>
+                  </div>                
+               </form> 
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-10">
+        <div class="card">
+            <div class="card-body">
+               <table class="table" style="color: black"> 
+                <thead>
+                    <tr>
+                      <th scope="col">Serial Number</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">IPV4</th>
+                   
+                    </tr>
+                  </thead>
+                
+                   <tbody >
+                       <tr *ngFor="let gateway of listGateway" >
+                           <td >{{gateway.serialNumber}} </td>
+                           <td>{{gateway.name}} </td>
+                           <td>{{gateway.ipV4}}</td>
+                  
+                           <td>
+                               <button class="btn btn-success" (click)="editGateway(gateway)">Edit</button>                               
+                           </td>
+                           <td>
+                           <button class="btn btn-danger" (click)="deleteGateway(gateway.serialNumber)">Delete</button>
+                           </td>
+                           <td>
+                            <button class="btn btn-info"  (click)="getListDevicesOfGateway(gateway.serialNumber)" (click)="getGatewaySelected(gateway.serialNumber)">More...peripheral devices..</button>
+                            </td>
+                       </tr>
+                       
+                   </tbody>
+
+               </table>
+               <!-- <table [(ngModel)]="GatewaySelected" class="table" style="display: none;"> 
+                <thead>
+                    <tr>
+                      <th scope="col">Serial number</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">IPV4</th>                 
+                   
+                    </tr>
+                  </thead>
+                
+                   <tbody>
+                       <tr >
+                           <td>{{GatewaySelected.serialNumber}} </td>
+                           <td>{{GatewaySelected.name} </td>
+                           <td>{{GatewaySelected.ipV4}}</td>                   
+               
+                       </tr>
+                       
+                   </tbody>
+                <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Vendor</th>
+                      <th scope="col">Status</th>
+                      <th scope="col">Date Created</th>
+                   
+                    </tr>
+                  </thead>
+                
+                   <tbody>
+                       <tr *ngFor="let device of listDevicesOfGatewaybySerialNumber">
+                           <td>{{device.uid}} </td>
+                           <td>{{device.vendor}} </td>
+                           <td>{{device.status}}</td>
+                           <td>{{device.dateCreated}}</td>
+               
+                       </tr>
+                       
+                   </tbody>
+                   
+               </table> -->
+            </div>
+        </div>
+
+    </div>
+</div>

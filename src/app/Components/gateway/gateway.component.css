@@ -1,0 +1,16 @@
+.container{
+    padding: 3% !important;
+    align-items: center;
+    margin-left: 0px !important;
+    width: 100% !important;
+    display: inline !important;
+}
+
+.offset-lg-2{
+    margin-left: 0px !important;
+    width: 100% !important;
+}
+
+.card-body{
+    align-items: center;
+}
