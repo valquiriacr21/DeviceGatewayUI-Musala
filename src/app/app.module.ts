@@ -11,12 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DeviceComponent } from './Components/device/device.component';
 import { GatewayComponent } from './Components/gateway/gateway.component';
+import { GatewaysPeripheralDevicesComponent } from './Components/gateways-peripheral-devices/gateways-peripheral-devices.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DeviceComponent,
-    GatewayComponent
+    GatewayComponent,
+    GatewaysPeripheralDevicesComponent
   ],
   imports: [
     BrowserModule,

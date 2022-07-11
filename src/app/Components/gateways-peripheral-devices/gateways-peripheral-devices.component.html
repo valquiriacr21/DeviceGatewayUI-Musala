@@ -2,19 +2,18 @@
     <div class="col-lg-10 offset-lg-2">
         <div class="card" >
             <div class="card-body " >
-                <h3 class="titulo" style="align-items: center;">Gateways</h3>
+                <h3 class="titulo" style="align-items: center;">Gateways Peripheral Devices</h3>
             </div>
         </div>
     </div>
 </div>
-
 <div class="row mt-1">
     <div class="col-lg-10" style="flex-direction: row; align-content: space-between;align-items: center; display: inline;">
         <div class="card">
             <div class="card-body"> 
                 <h5 class="titulo">{{accion|uppercase}} Gateways</h5> 
 
-               <form [formGroup]="form" (ngSubmit)="saveGateway()">
+               <form [formGroup]="form" (ngSubmit)="saveDevice()">
                 <div class="input-group input-group-lg mb-3">                   
                     <input  formControlName="serialNumber" type="text" class="form-control" placeholder="Serial Number" >
                   </div>
@@ -40,7 +39,7 @@
     <div class="col-lg-10">
         <div class="card">
             <div class="card-body">
-               <table class="table" style="color: black"> 
+               <!-- <table class="table" style="color: black"> 
                 <thead>
                     <tr>
                       <th scope="col">Serial Number</th>
@@ -71,27 +70,26 @@
                        
                    </tbody>
 
-               </table>
-               <table  class="table" style="color: blueviolet"> 
+               </table> -->
+               <table [(ngModel)]="GatewaySelected" class="table" style="display: none;"> 
                 <thead>
                     <tr>
                       <th scope="col">Serial number</th>
                       <th scope="col">Name</th>
-                      <th scope="col">IPV4</th>       
+                      <th scope="col">IPV4</th>                 
                    
                     </tr>
-                  </thead>                
+                  </thead>
+                
                    <tbody>
-                       <tr [(ngModel)]="GatewaySelected">
-                           <td>{{GatewaySelected.serialNumber}} </td>
+                       <tr >
+                           <td>{{GatewaySelected.serialNumber}}</td>
                            <td>{{GatewaySelected.name}}</td>
                            <td>{{GatewaySelected.ipV4}}</td>                   
                
                        </tr>
                        
                    </tbody>
-                </table>
-                <table class="table" style="color: blueviolet">
                 <thead>
                     <tr>
                       <th scope="col">ID</th>
@@ -108,16 +106,6 @@
                            <td>{{device.vendor}} </td>
                            <td>{{device.status}}</td>
                            <td>{{device.dateCreated}}</td>
-
-                           <!-- <td>
-                            <button class="btn btn-success" (click)="editDevice(device)">Edit</button>                               
-                        </td>
-                        <td>
-                        <button class="btn btn-danger" (click)="deleteGateway(gateway.serialNumber)">Delete</button>
-                        </td>
-                        <td>
-                         <button class="btn btn-info"  (click)="getListDevicesOfGateway(gateway.serialNumber)" (click)="getGatewaySelected(gateway.serialNumber)">More...peripheral devices..</button>
-                         </td> -->
                
                        </tr>
                        

@@ -2,10 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DeviceComponent } from './Components/device/device.component';
 import { GatewayComponent } from './Components/gateway/gateway.component';
+import { GatewaysPeripheralDevicesComponent } from './Components/gateways-peripheral-devices/gateways-peripheral-devices.component';
 
 const routes: Routes = [
-  {path:"gateway",component:GatewayComponent},
-  {path:"device",component:DeviceComponent}
+  {path:"gateways",component:GatewayComponent},
+  {path:"devices",component:DeviceComponent},
+  {path:"gatewaysPeripheralDevices",component:GatewaysPeripheralDevicesComponent}
 ];
 
 @NgModule({

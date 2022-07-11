@@ -19,14 +19,21 @@
                     <input  formControlName="vendor" type="text" class="form-control" placeholder="Vendor" >
                   </div>
                   <div class="input-group input-group-lg mb-2">                   
-                    <input formControlName="dateCreated"  type="text" class="form-control" placeholder="Date of Created" >
+                    <input formControlName="dateCreated"  type="datetime-local" class="form-control" placeholder="Date of Created" >
                   </div>
-                  <div class="input-group input-group-lg mb-2">                   
-                    <input formControlName="status"  type="text" class="form-control" placeholder="Status" >
-                  </div>
-                  <div class="input-group input-group-lg mb-2">                   
+                  <!-- <div class="input-group input-group-lg mb-2">                   
+                    <input formControlName="status"  type="text" class="form-control" placeholder="Status Offline/Online" >
+                  </div> -->
+                  <select formControlName="status" name="GatewayStatus" [(ngModel)]="StatusDeviceSelected" stytle="margin-bottom:5px;" class="form-control form-control-lg select-option">
+                    <option [value]="status.value" *ngFor="let status of listStatus">{{status.name}}</option>
+                 </select>
+
+                  <!-- <div class="input-group input-group-lg mb-2">                   
                     <input formControlName="gatewaySerialNumber"  type="text" class="form-control" placeholder="Serial Number of Gateway" >
-                  </div>
+                  </div> -->
+                  <select formControlName="gatewaySerialNumber" name="Gateway" [(ngModel)]="SerialGatewaySelected" class="form-control form-control-lg select-option">
+                    <option  *ngFor="let gateway of listGateways">{{gateway.serialNumber}}</option>
+                 </select>
                  
                   <div class="d-grid gap-2">
                      <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">

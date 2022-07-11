@@ -8,16 +8,23 @@ import { GatewayDeviceService } from 'src/app/Services/gateway-device.service';
   styleUrls: ['./device.component.css']
 })
 export class DeviceComponent implements OnInit {
-
+  StatusDeviceSelected:any;
+  SerialGatewaySelected:any;
+  listGateways:any[]=[];
   listDevices:any[]=[];
   accion='Add';
   form:FormGroup;
   id:number|undefined; 
+  listStatus: any[]=[
+    {value:'Offline',name:'Offline'},
+    {value:'Online',name:'Online'},
+   ];
 // constructor(){}
   constructor(private fb:FormBuilder, private _gatewayDeviceService:GatewayDeviceService) {
     this.form=this.fb.group({
       vendor:['',Validators.required],
       status:['',Validators.required],
+      // StatusDeviceSelected:['',Validators.required],
       dateCreated:['',Validators.required],
       gatewaySerialNumber:['',Validators.required]
     })
@@ -25,8 +32,23 @@ export class DeviceComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDevices();
+    this.getGateways();
+    this.SerialGatewaySelected=this.listGateways[0];
+    this.StatusDeviceSelected=this.listStatus[0].value;
   }
 
+  // getGatewaySelected(){  
+  //     this.GatewaySelected=this.listGateways[0];
+  //   }
+  getGateways(){
+    this._gatewayDeviceService.getListGateways().subscribe(data=>{
+      console.log(data);
+      this.listGateways=data;
+      // this.ListGatewayCapture=data;
+    },error=>{
+      console.log(error);
+    })    
+  }
   getDevices(){
     this._gatewayDeviceService.getListDevices().subscribe(data=>{
       console.log(data);
@@ -78,9 +100,9 @@ export class DeviceComponent implements OnInit {
     this.id=device.uid;
     this.form.patchValue({
       vendor:device.vendor,
-      status:device.status,
+      StatusDeviceSelected:device.status,
       dateCreated:device.dateCreated,
-      gatewaySerialNumber:device.gatewaySerialNumber      
+      SerialGatewaySelected:device.gatewaySerialNumber      
     })  
     
   }

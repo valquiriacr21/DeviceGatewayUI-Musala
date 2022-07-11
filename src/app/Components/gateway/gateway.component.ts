@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
-import { ChildActivationStart } from '@angular/router';
+import { ChildActivationStart, RouterLink, RouterLinkActive } from '@angular/router';
 import { GatewayDeviceService } from 'src/app/Services/gateway-device.service';
 
 @Component({
@@ -10,9 +10,13 @@ import { GatewayDeviceService } from 'src/app/Services/gateway-device.service';
 })
 export class GatewayComponent implements OnInit {
   // @Input() ListGatewayCaptures:any[]=[];
+  @Output() parametrosSeleccionados=new EventEmitter<any>();
   listDevicesOfGatewaybySerialNumber:any[]=[];
   GatewaySelected:any;
-  listGateway:any[]=[];
+  serialNumberOfGatewaySelected:any;
+
+  listGateways:any[]=[];
+  c:any[]=[];
   accion='Add';
   form:FormGroup;
   id:number|undefined; 
@@ -20,7 +24,7 @@ export class GatewayComponent implements OnInit {
   // constructor(){}
   constructor(private fb:FormBuilder, private _gatewayDeviceService:GatewayDeviceService) {
     this.form=this.fb.group({
-      // serialNumber:['',Validators.required],
+      serialNumber:['',Validators.required],
       name:['',Validators.required],
       ipV4:['',Validators.required]
     })
@@ -28,20 +32,34 @@ export class GatewayComponent implements OnInit {
 
   ngOnInit(): void {
     this.getGateways();
-  }
+    this.intialGateway();
 
+  }
+  
   getGateways(){
     this._gatewayDeviceService.getListGateways().subscribe(data=>{
       console.log(data);
-      this.listGateway=data;
+      this.listGateways=data;
       // this.ListGatewayCapture=data;
     },error=>{
       console.log(error);
     })    
   }
 
+  intialGateway(){
+    this._gatewayDeviceService.getListGateways().subscribe(data=>{
+      console.log(data[0]);
+    this.GatewaySelected=data[0];
+    // this.GatewaySelected.name=this.listGateways[0].name;
+    // this.GatewaySelected.ipV4=this.listGateways[0].ipV4;
+    //console.log('serial number:',GatewaySelected.serialNumber.);
+    },error=>{
+      console.log(error);
+    }) 
+  }
   saveGateway(){
     const gateway:any={
+      serialNumber:this.form.get('serialNumber')?.value,
       name:this.form.get('name')?.value,
       ipV4:this.form.get('ipV4')?.value
     }
@@ -80,6 +98,7 @@ export class GatewayComponent implements OnInit {
     this.accion='Edit';
     this.id=gateway.serialNumber;
     this.form.patchValue({
+      serialNumber: gateway.serialNumber,
       ipV4:gateway.ipV4,
       name:gateway.name,      
     })      
@@ -101,6 +120,17 @@ export class GatewayComponent implements OnInit {
       },error=>{
         console.log(error);
       })
+      // RouterLinkActive()
+    }
+
+    ShowGatewayWithYourDevices(){
+      // console.log(this.categoriaSeleccionada);
+      // console.log(this.paisSeleccionado);
+      const PARAMETROS ={
+        serialNumberOfGatewaySelected: this.GatewaySelected.serialNumber
+        //listDevicesOfGatewaybySerialNumber: this.listDevicesOfGatewaybySerialNumber
+      }
+      this.parametrosSeleccionados.emit(PARAMETROS)
     }
       
   
