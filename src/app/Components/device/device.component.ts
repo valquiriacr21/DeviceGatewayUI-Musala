@@ -8,8 +8,8 @@ import { GatewayDeviceService } from 'src/app/Services/gateway-device.service';
   styleUrls: ['./device.component.css']
 })
 export class DeviceComponent implements OnInit {
-  StatusDeviceSelected:any;
-  SerialGatewaySelected:any;
+  StatusDeviceSelected:string="";
+  SerialGatewaySelected:string="";
   listGateways:any[]=[];
   listDevices:any[]=[];
   accion='Add';
@@ -60,8 +60,8 @@ export class DeviceComponent implements OnInit {
   saveDevice(){
     const device:any={
       vendor:this.form.get('vendor')?.value,
-      status:this.form.get('status')?.value,
       dateCreated:this.form.get('dateCreated')?.value,
+      status:this.form.get('status')?.value,
       gatewaySerialNumber:this.form.get('gatewaySerialNumber')?.value
     }
 
@@ -98,11 +98,19 @@ export class DeviceComponent implements OnInit {
   editDevice(device:any){
     this.accion='Edit';
     this.id=device.uid;
+    if(this.listStatus[0].value==device.status)
+    {
+      this.StatusDeviceSelected=this.listStatus[0].value;
+    }
+    else{
+      this.StatusDeviceSelected=this.listStatus[1].value;
+    }
+    this.SerialGatewaySelected=device.gatewaySerialNumber;
     this.form.patchValue({
       vendor:device.vendor,
-      StatusDeviceSelected:device.status,
       dateCreated:device.dateCreated,
-      SerialGatewaySelected:device.gatewaySerialNumber      
+      StatusDeviceSelected:device.status,
+      SerialGatewaySelected:device.gatewaySerialNumber     
     })  
     
   }

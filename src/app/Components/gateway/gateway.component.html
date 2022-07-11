@@ -16,10 +16,10 @@
 
                <form [formGroup]="form" (ngSubmit)="saveGateway()">
                 <div class="input-group input-group-lg mb-3">                   
-                    <input  formControlName="serialNumber" type="text" class="form-control" placeholder="Serial Number" >
+                    <input  formControlName="serialNumber" type="text" minlength="2" maxlength="450" class="form-control" placeholder="Serial Number" >
                   </div>
                 <div class="input-group input-group-lg mb-3">                   
-                    <input  formControlName="name" type="text" class="form-control" placeholder="name" >
+                    <input  formControlName="name" type="text" minlength="2" maxlength="50" class="form-control" placeholder="name" >
                   </div>
                   <div class="input-group input-group-lg mb-3">                   
                     <!-- <input formControlName="ipV4"  type="text" class="form-control" placeholder="ipV4    Example: 10.0.0.1    Format: 000.000.000.000" > -->
