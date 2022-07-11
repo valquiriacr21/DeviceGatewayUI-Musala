@@ -10,7 +10,8 @@ import { GatewayDeviceService } from 'src/app/Services/gateway-device.service';
   styleUrls: ['./gateways-peripheral-devices.component.css']
 })
 export class GatewaysPeripheralDevicesComponent implements OnInit {
-  listDevicesOfGatewaybySerialNumber:any[]=[];
+  @Input() listDevicesOfGatewaybySerialNumber:any;
+  //listDevicesOfGatewaybySerialNumber:any[]=[];
   GatewaySelected:any;
   accion='Add';
   form:FormGroup;
@@ -21,6 +22,7 @@ export class GatewaysPeripheralDevicesComponent implements OnInit {
       serialNumber:['',Validators.required],
       name:['',Validators.required],
       ipV4:['',Validators.required],
+
       vendor:['',Validators.required],
       status:['',Validators.required],
       // StatusDeviceSelected:['',Validators.required],
@@ -29,6 +31,7 @@ export class GatewaysPeripheralDevicesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   saveDevice(){

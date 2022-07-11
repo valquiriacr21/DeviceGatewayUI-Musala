@@ -51,7 +51,7 @@
                   </thead>
                 
                    <tbody >
-                       <tr *ngFor="let gateway of listGateways" >
+                       <tr mat-row class="selectforrow" *ngFor="let gateway of listGateways" (click)="onClickRow(gateway.serialNumber)" >
                            <td >{{gateway.serialNumber}} </td>
                            <td>{{gateway.name}} </td>
                            <td>{{gateway.ipV4}}</td>

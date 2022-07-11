@@ -20,6 +20,8 @@ export class GatewayComponent implements OnInit {
   accion='Add';
   form:FormGroup;
   id:number|undefined; 
+  // row:any;
+  SelectedRow:any;
   //DisplayState: 'none';
   // constructor(){}
   constructor(private fb:FormBuilder, private _gatewayDeviceService:GatewayDeviceService) {
@@ -33,6 +35,10 @@ export class GatewayComponent implements OnInit {
   ngOnInit(): void {
     this.getGateways();
     this.intialGateway();
+
+  }
+  onClickRow(serialNumber: string){
+    console.log(serialNumber);
 
   }
   

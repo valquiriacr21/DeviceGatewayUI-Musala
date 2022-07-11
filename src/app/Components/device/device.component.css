@@ -17,3 +17,12 @@
 select{
     margin-bottom: 10px !important;
 }
+
+.selectforrow{
+    background-color: white;
+}
+
+.selectforrow:hover{
+    background-color: rgb(148, 88, 205) !important;
+    color: white !important;
+}
