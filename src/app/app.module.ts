@@ -34,10 +34,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule
+    MatDialogModule, //-
+    MatButtonModule,//--
+    MatIconModule, //--
+    MatToolbarModule,
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { GatewayComponent } from './Components/gateway/gateway.component';
 import { GatewayDeviceService } from './Services/gateway-device.service';
 // import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
+// import {MatIconModule} from '@angular/material/icon';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
