@@ -13,6 +13,12 @@ import { DeviceComponent } from './Components/device/device.component';
 import { GatewayComponent } from './Components/gateway/gateway.component';
 import { GatewaysPeripheralDevicesComponent } from './Components/gateways-peripheral-devices/gateways-peripheral-devices.component';
 
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +34,10 @@ import { GatewaysPeripheralDevicesComponent } from './Components/gateways-periph
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
