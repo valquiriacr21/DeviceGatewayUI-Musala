@@ -12,20 +12,42 @@
     <div class="col-lg-10" style="flex-direction: row; align-content: space-between;align-items: center; display: inline;">
         <div class="card">
             <div class="card-body"> 
-                <h5 class="titulo">{{accion|uppercase}} Gateways</h5> 
+                <h5 class="titulo">{{action|uppercase}} Gateways</h5> 
 
                <form [formGroup]="form" (ngSubmit)="saveGateway()">
-                <div class="input-group input-group-lg mb-3">                   
+                <!-- <div class="input-group input-group-lg mb-3">                   
                     <input  formControlName="serialNumber" type="text" minlength="2" maxlength="450" class="form-control" placeholder="Serial Number" >
-                  </div>
-                <div class="input-group input-group-lg mb-3">                   
+                  </div> -->
+                  <mat-form-field appearance="outline" lass="input-group input-group-lg mb-3">
+                    <mat-label>Serial Number</mat-label>
+                    <input matInput formControlName="serialNumber" type="text" minlength="2" maxlength="450" style="width: 100% !important;" placeholder="Serial Number">
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                    <!-- sentiment_very_satisfied -->
+                    <mat-hint>Hint</mat-hint>            
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" lass="input-group input-group-lg mb-3">
+                    <mat-label>Name of Gateway</mat-label>
+                    <input matInput formControlName="name" type="text" minlength="2" maxlength="450" style="width: 100% !important;" placeholder="Name of Gateway">
+                    <mat-icon matSuffix>directions_bus</mat-icon>
+                    <!-- sentiment_very_satisfied -->
+                    <mat-hint>Hint</mat-hint>            
+                  </mat-form-field>
+                  <mat-form-field appearance="outline" lass="input-group input-group-lg mb-3">
+                    <mat-label>IPV4</mat-label>
+                    <input matInput formControlName="ipV4" type="text" minlength="7" maxlength="15" size="15"  style="width: 100% !important;" placeholder="IPV4    Example: 10.0.0.1    Format: 000.000.000.000" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$">
+                    <mat-icon matSuffix>desktop_windows</mat-icon>
+                    <!-- sentiment_very_satisfied -->
+                    <mat-hint>Hint</mat-hint>            
+                  </mat-form-field>
+
+                <!-- <div class="input-group input-group-lg mb-3">                   
                     <input  formControlName="name" type="text" minlength="2" maxlength="50" class="form-control" placeholder="name" >
-                  </div>
-                  <div class="input-group input-group-lg mb-3">                   
-                    <!-- <input formControlName="ipV4"  type="text" class="form-control" placeholder="ipV4    Example: 10.0.0.1    Format: 000.000.000.000" > -->
-                    <!-- <input formControlName="ipV4" type="number" class="input-box" placeholder="ipV4 xxx.xxx.xxx.xx" autocomplete="off" /> -->
+                  </div> -->
+                  <!-- <div class="input-group input-group-lg mb-3">                   
+                     <input formControlName="ipV4"  type="text" class="form-control" placeholder="ipV4    Example: 10.0.0.1    Format: 000.000.000.000" > 
+                     <input formControlName="ipV4" type="number" class="input-box" placeholder="ipV4 xxx.xxx.xxx.xx" autocomplete="off" /> 
                     <input formControlName="ipV4" type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" class="form-control" placeholder="ipV4    Example: 10.0.0.1    Format: 000.000.000.000">
-                  </div>
+                  </div> -->
 
                   
                  
@@ -58,13 +80,18 @@
                                 
                   
                            <td>
-                               <button class="btn btn-success" (click)="editGateway(gateway)">Edit</button>                               
+                            <mat-icon (click)="editGateway(gateway)">edit</mat-icon>
+                               <!-- <button class="btn btn-success" >Edit</button>                                -->
                            </td>
                            <td>
-                           <button class="btn btn-danger" (click)="deleteGateway(gateway.serialNumber)">Delete</button>
+                            <mat-icon color="warn" (click)="deleteGateway(gateway.serialNumber)">delete</mat-icon>
+                           <!-- <button class="btn btn-danger" (click)="deleteGateway(gateway.serialNumber)">
+                            
+                           </button> -->
                            </td>
                            <td>
-                            <button class="btn btn-info"  (click)="getListDevicesOfGateway(gateway.serialNumber)" (click)="getGatewaySelected(gateway.serialNumber)">More...peripheral devices..</button>
+                            <mat-icon  (click)="getListDevicesOfGateway(gateway.serialNumber)" (click)="getGatewaySelected(gateway.serialNumber)">more_horiz</mat-icon>
+                            <!-- <button class="btn btn-info" >More...peripheral devices..</button> -->
                             </td>
 
                        </tr>

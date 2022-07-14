@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>{{action+' '+titleOfComponent+' Form'}}</h1>
+<div mat-dialog-content>
+
+    <mat-form-field appearance="outline">
+        <mat-label>Serial Number</mat-label>
+        <input matInput formControlName="serialNumber" type="text" minlength="2" maxlength="450" placeholder="Serial Number">
+        <mat-icon matSuffix>vpn_key</mat-icon>
+        <mat-hint>Hint</mat-hint>
+
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Name Of Gateway</mat-label>
+        <input matInput formControlName="name" type="text" minlength="2" maxlength="50" placeholder="Name Of Gateway">
+        <mat-icon matSuffix>directions_bus</mat-icon>
+        <mat-hint>Hint</mat-hint>
+
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>IPV4</mat-label>
+        <input matInput formControlName="ipV4" placeholder="ipV4    Example: 10.0.0.1    Format: 000.000.000.000"  type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$">
+        <mat-icon matSuffix>desktop_windows</mat-icon>
+        <mat-hint>Hint</mat-hint>
+
+      </mat-form-field>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <button mat-raised-button color="field" >Cancel</button>
+        <!-- <mat-icon>favorite</mat-icon> -->
+      </button>
+      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+        <button mat-raised-button  type="submit" color="field" >Save</button>
+        <!-- <mat-icon>favorite</mat-icon> -->
+      </button>
+      <!-- <form [formGroup]="form" (ngSubmit)="saveGateway()">
+        <div class="input-group input-group-lg mb-3">                   
+            <input  formControlName="serialNumber" type="text" minlength="2" maxlength="450" class="form-control" placeholder="Serial Number" >
+          </div>
+        <div class="input-group input-group-lg mb-3">                   
+            <input  formControlName="name" type="text" minlength="2" maxlength="50" class="form-control" placeholder="name" >
+          </div>
+          <div class="input-group input-group-lg mb-3">                   
+             <input formControlName="ipV4"  type="text" class="form-control" placeholder="ipV4    Example: 10.0.0.1    Format: 000.000.000.000" > -->
+            <!-- <input formControlName="ipV4" type="number" class="input-box" placeholder="ipV4 xxx.xxx.xxx.xx" autocomplete="off" /> 
+            <input formControlName="ipV4" type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" class="form-control" placeholder="ipV4    Example: 10.0.0.1    Format: 000.000.000.000">
+          </div>
+
+          
+         
+          <div class="d-grid gap-2">
+             <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                <i class="fa-solid fa-database"></i>&nbsp;Save</button>
+          </div>                
+       </form>  -->
+</div>

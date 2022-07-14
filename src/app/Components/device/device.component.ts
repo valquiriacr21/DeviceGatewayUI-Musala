@@ -12,7 +12,7 @@ export class DeviceComponent implements OnInit {
   SerialGatewaySelected:string="";
   listGateways:any[]=[];
   listDevices:any[]=[];
-  accion='Add';
+  action='Add';
   form:FormGroup;
   id:number|undefined; 
   listStatus: any[]=[
@@ -78,7 +78,7 @@ export class DeviceComponent implements OnInit {
       //edit gateway
       this._gatewayDeviceService.updateDevice(this.id,device).subscribe(data=>{
         this.form.reset();
-        this.accion="Add";
+        this.action="Add";
         this.id=undefined;
         this.getDevices();
       },error=>{
@@ -96,7 +96,7 @@ export class DeviceComponent implements OnInit {
   }
 
   editDevice(device:any){
-    this.accion='Edit';
+    this.action='Edit';
     this.id=device.uid;
     if(this.listStatus[0].value==device.status)
     {

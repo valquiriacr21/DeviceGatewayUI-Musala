@@ -1,4 +1,5 @@
 
+<<<<<<< Updated upstream
  <mat-toolbar color="primary">
   <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
     <mat-icon>supervised_user_circle</mat-icon>
@@ -14,6 +15,22 @@
     <mat-icon>share</mat-icon>
   </button>
 </mat-toolbar>
+=======
+<mat-toolbar color="primary">
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>face</mat-icon>
+  </button>
+  <span>Gateways and Devices Data Material UI</span>
+  <span class="example-spacer"></span>
+  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <!-- <button mat-raised-button color="warn" (click)="openDialog()">Add</button> -->
+    <mat-icon class="mat-icon-white" color="white" (click)="openDialog()">add</mat-icon>
+    <!-- <mat-icon>favorite</mat-icon> -->
+  </button>
+</mat-toolbar> 
+
+
+>>>>>>> Stashed changes
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#"></a>
@@ -22,10 +39,40 @@
     </button>
    
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">      
+      <!-- <nav mat-tab-nav-bar [backgroundColor]="background" [tabPanel]="tabPanel">
+        <a mat-tab-link *ngFor="let link of links"
+           (click)="activeLink = link"
+           [active]="activeLink == link"> {{link}} </a>           
+      </nav> 
+      <mat-tab-nav-panel #tabPanel></mat-tab-nav-panel> -->
+      <mat-tab-group>
+        <mat-tab label="Gatewways">         
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" >directions_bus</mat-icon>Gatewways
+            <!-- <a mat-tab-link 
+            (click)="activeLink + links[0]"
+            [active]="activeLink + links[0]"> Gatewways
+          </a> -->
+          
+          </ng-template> 
+          <app-gateway></app-gateway>
+          <!-- <a mat-tab-link disabled>Disabled Link</a> -->
+        </mat-tab>
+
+        <mat-tab label="Devices"> 
+          <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon" >device_unknown</mat-icon> Devices
+          </ng-template>
+          <app-device></app-device>
+         </mat-tab>
+
+      </mat-tab-group>
+
+      <!-- <ul class="navbar-nav">      
         <li class="nav-item">
-          <a class="nav-link" routerLink="/gateways">Gatewways</a>
-          <!-- <app-gateway [ListGatewayCaptures]="listGatewayApp"></app-gateway> -->
+          <a class="nav-link" routerLink="/gateways" >Gatewways</a>
+          
+
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/devices">Devices</a>
@@ -33,7 +80,7 @@
         <li class="nav-item">
           <a class="nav-link"  routerLink="/gatewaysPeripheralDevices" style="display: none;">Peripheral Devices of Gateway</a>
         </li>   
-      </ul>
+      </ul> -->
     </div>
   </div>
 </nav>

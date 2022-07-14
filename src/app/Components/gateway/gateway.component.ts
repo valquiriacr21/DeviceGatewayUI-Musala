@@ -17,7 +17,7 @@ export class GatewayComponent implements OnInit {
 
   listGateways:any[]=[];
   c:any[]=[];
-  accion='Add';
+  action='Add';
   form:FormGroup;
   id:number|undefined; 
   // row:any;
@@ -35,8 +35,8 @@ export class GatewayComponent implements OnInit {
   ngOnInit(): void {
     this.getGateways();
     this.intialGateway();
-
   }
+  
   onClickRow(serialNumber: string){
     console.log(serialNumber);
 
@@ -83,7 +83,7 @@ export class GatewayComponent implements OnInit {
       //edit gateway
       this._gatewayDeviceService.updateGateway(this.id,gateway).subscribe(data=>{
         this.form.reset();
-        this.accion="Add";
+        this.action="Add";
         this.id=undefined;
         this.getGateways();
       },error=>{
@@ -101,7 +101,7 @@ export class GatewayComponent implements OnInit {
   }
 
   editGateway(gateway:any){
-    this.accion='Edit';
+    this.action='Edit';
     this.id=gateway.serialNumber;
     this.form.patchValue({
       serialNumber: gateway.serialNumber,
