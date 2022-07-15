@@ -14,10 +14,11 @@ import { GatewayComponent } from './Components/gateway/gateway.component';
 import { GatewaysPeripheralDevicesComponent } from './Components/gateways-peripheral-devices/gateways-peripheral-devices.component';
 import { DialogComponent } from './Components/dialog/dialog.component';
 
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule} from '@angular/material/icon';
-import{MatButtonModule} from '@angular/material/button';
-import {MatDialogModule} from '@angular/material/dialog';
+// import {MatToolbarModule} from '@angular/material/toolbar';
+
+// import {MatIconModule} from '@angular/material/icon';
+// import{MatButtonModule} from '@angular/material/button';
+// import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -46,13 +47,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-<<<<<<< Updated upstream
-    MatDialogModule, //-
-    MatButtonModule,//--
-    MatIconModule, //--
-    MatToolbarModule,
-
-=======
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -60,7 +54,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatFormFieldModule,
     MatInputModule,
     MatTabsModule,
->>>>>>> Stashed changes
 
   ],
   providers: [],

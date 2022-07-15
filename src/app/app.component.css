@@ -9,11 +9,6 @@
 .navbar{
     background-color: rgb(2, 2, 2);
 }
-<<<<<<< Updated upstream
-.example-spacer {
-    flex: 1 1 auto;
-  }
-=======
 .example-spacer{
     flex: 1 1 auto;
 }
@@ -25,4 +20,3 @@
     font-size: 1.2rem;
 
 }
->>>>>>> Stashed changes
