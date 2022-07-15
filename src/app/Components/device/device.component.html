@@ -1,4 +1,4 @@
- <div class="container mt-5">
+ <!-- <div class="container mt-5">
     <div class="col-lg-8 offset-lg-2">
         <div class="card">
             <div class="card-body ">
@@ -6,7 +6,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="row mt-4">
    <div class="col-lg-10">
@@ -14,32 +14,72 @@
             <div class="card-body">
                <h5 class="titulo">{{action|uppercase}} Device</h5> 
 
-               <form [formGroup]="form" (ngSubmit)="saveDevice()">
-                <div class="input-group input-group-lg mb-2">                   
-                    <input  formControlName="vendor" type="text" minlength="2" maxlength="50" class="form-control" placeholder="Vendor" >
-                  </div>
-                  <div class="input-group input-group-lg mb-2">                   
-                    <input formControlName="dateCreated"  type="datetime-local" class="form-control" placeholder="Date of Created" >
-                  </div>
-                  <!-- <div class="input-group input-group-lg mb-2">                   
-                    <input formControlName="status"  type="text" class="form-control" placeholder="Status Offline/Online" >
-                  </div> -->
-                  <select formControlName="status" name="GatewayStatus" [(ngModel)]="StatusDeviceSelected"  class="form-control form-control-lg select-option">
-                    <option [value]="status.value" *ngFor="let status of listStatus">{{status.name}}</option>
-                 </select>
+                <form [formGroup]="form" (ngSubmit)="saveDevice()">
+                    <!-- <div class="input-group input-group-lg mb-2">                   
+                        <input  formControlName="vendor" type="text" minlength="2" maxlength="50" class="form-control" placeholder="Vendor" >
+                    </div> -->
+                    <mat-form-field appearance="outline" lass="input-group input-group-lg mb-3">
+                        <mat-label>Vendor Name</mat-label>
+                        <input matInput formControlName="vendor" type="text" minlength="2" maxlength="50" style="width: 100% !important;" placeholder="Vendor Name">
+                        <mat-icon matSuffix>people</mat-icon>
+                        <!-- sentiment_very_satisfied -->
+                        <mat-hint>Hint</mat-hint>  
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" lass="input-group input-group-lg mb-3">
+                        <mat-label>Date of Created</mat-label>
+                        <input matInput formControlName="dateCreated" type="datetime-local"  style="width: 100% !important;" placeholder="Date of Created">
+                        <!-- <mat-icon matSuffix>date_range</mat-icon> -->
+                        <!-- sentiment_very_satisfied -->
+                        <!-- <mat-hint>Hint</mat-hint>   -->
+                    </mat-form-field>
 
-                  <!-- <div class="input-group input-group-lg mb-2">                   
-                    <input formControlName="gatewaySerialNumber"  type="text" class="form-control" placeholder="Serial Number of Gateway" >
-                  </div> -->
-                  <select formControlName="gatewaySerialNumber" name="Gateway" [(ngModel)]="SerialGatewaySelected" class="form-control form-control-lg select-option">
-                    <option  *ngFor="let gateway of listGateways">{{gateway.serialNumber}}</option>
-                 </select>
-                 
-                  <div class="d-grid gap-2">
-                     <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
-                        <i class="fa-solid fa-database"></i>&nbsp;Save</button>
-                  </div>                
-               </form>
+
+                    <!-- <div class="input-group input-group-lg mb-2">                   
+                        <input formControlName="dateCreated"  type="datetime-local" class="form-control" placeholder="Date of Created" >
+                    </div> -->
+                    <!-- <div class="input-group input-group-lg mb-2">                   
+                        <input formControlName="status"  type="text" class="form-control" placeholder="Status Offline/Online" >
+                    </div> -->
+                    <!-- <select formControlName="status" name="GatewayStatus" [(ngModel)]="StatusDeviceSelected"  class="form-control form-control-lg select-option">
+                        <option [value]="status.value" *ngFor="let status of listStatus">{{status.name}}</option>
+                    </select> -->
+                    <!-- <mat-form-field appearance="fill">
+                        <mat-label>Status</mat-label>
+                        <select matNativeControl required formControlName="status" [(ngModel)]="StatusDeviceSelected">
+                        <option [value]="status.value" *ngFor="let status of listStatus">{{status.name}}</option>
+                        </select>
+                    </mat-form-field> -->
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Status Online|Offline</mat-label>
+                        <mat-select required  formControlName="status" [(ngModel)]="StatusDeviceSelected" name="status">
+                        <mat-option *ngFor="let status of listStatus" [value]="status.value">
+                            {{status.name}}
+                        </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- <div class="input-group input-group-lg mb-2">                   
+                        <input formControlName="gatewaySerialNumber"  type="text" class="form-control" placeholder="Serial Number of Gateway" >
+                    </div> -->
+                    <!-- <mat-form-field appearance="fill">
+                        <mat-label>Gateway Serial Number</mat-label>
+                        <mat-select required formControlName="gatewaySerialNumber" [(ngModel)]="SerialGatewaySelected" name="gatewaySerialNumber">
+                            <mat-option *ngFor="let gateway of listGateways" [value]="gateway.name">
+                                {{gateway.serialNumber}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field> -->
+
+                    <select required formControlName="gatewaySerialNumber" name="Gateway" [(ngModel)]="SerialGatewaySelected" class="form-control form-control-lg select-option">
+                        <option  *ngFor="let gateway of listGateways">{{gateway.serialNumber}}</option>
+                    </select>
+                    
+                    <div class="d-grid gap-2">
+                        <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                            <i class="fa-solid fa-database"></i>&nbsp;Save</button>
+                    </div>                
+                </form>
             </div>
         </div>
     </div>
@@ -68,10 +108,12 @@
                             <td>{{listDevice.gatewaySerialNumber}}</td>
                   
                            <td>
-                               <button class="btn btn-success" (click)="editDevice(listDevice)">Edit</button>                               
+                            <mat-icon (click)="editDevice(listDevice)">edit</mat-icon>
+                               <!-- <button class="btn btn-success" (click)="editDevice(listDevice)">Edit</button>                                -->
                            </td>
                            <td>
-                           <button class="btn btn-danger" (click)="deleteDevice(listDevice.uid)">Delete</button>
+                            <mat-icon color="warn" (click)="deleteDevice(listDevice.uid)">delete</mat-icon>
+                           <!-- <button class="btn btn-danger" (click)="deleteDevice(listDevice.uid)">Delete</button> -->
                            </td>
                          
                        </tr>

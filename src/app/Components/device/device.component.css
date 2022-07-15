@@ -26,3 +26,6 @@ select{
     background-color: rgb(148, 88, 205) !important;
     color: white !important;
 }
+mat-form-field{
+    width: 100% !important;
+}

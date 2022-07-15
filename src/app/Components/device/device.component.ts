@@ -8,8 +8,8 @@ import { GatewayDeviceService } from 'src/app/Services/gateway-device.service';
   styleUrls: ['./device.component.css']
 })
 export class DeviceComponent implements OnInit {
-  StatusDeviceSelected:string="";
-  SerialGatewaySelected:string="";
+  StatusDeviceSelected:any;
+  SerialGatewaySelected:any;
   listGateways:any[]=[];
   listDevices:any[]=[];
   action='Add';
@@ -33,8 +33,9 @@ export class DeviceComponent implements OnInit {
   ngOnInit(): void {
     this.getDevices();
     this.getGateways();
-    this.SerialGatewaySelected=this.listGateways[0];
-    this.StatusDeviceSelected=this.listStatus[0].value;
+    this.StatusDeviceSelected=this.listStatus[0].name;
+    this.SerialGatewaySelected=this.listGateways[0].serialNumber;
+    var a=0;
   }
 
   // getGatewaySelected(){  
@@ -43,6 +44,7 @@ export class DeviceComponent implements OnInit {
   getGateways(){
     this._gatewayDeviceService.getListGateways().subscribe(data=>{
       console.log(data);
+
       this.listGateways=data;
       // this.ListGatewayCapture=data;
     },error=>{
@@ -70,6 +72,8 @@ export class DeviceComponent implements OnInit {
       this._gatewayDeviceService.saveDevice(device).subscribe(data=>{
         this.getDevices();
         this.form.reset();
+        this.StatusDeviceSelected=this.listStatus[0].name;
+        this.SerialGatewaySelected=this.listGateways[0].serialNumber;
       },error=>{
         console.log(error);
       })      
@@ -78,6 +82,8 @@ export class DeviceComponent implements OnInit {
       //edit gateway
       this._gatewayDeviceService.updateDevice(this.id,device).subscribe(data=>{
         this.form.reset();
+        this.StatusDeviceSelected=this.listStatus[0].name;
+        this.SerialGatewaySelected=this.listGateways[0].serialNumber;
         this.action="Add";
         this.id=undefined;
         this.getDevices();
@@ -109,7 +115,7 @@ export class DeviceComponent implements OnInit {
     this.form.patchValue({
       vendor:device.vendor,
       dateCreated:device.dateCreated,
-      StatusDeviceSelected:device.status,
+      StatusDeviceSelected:device.status.value,
       SerialGatewaySelected:device.gatewaySerialNumber     
     })  
     
