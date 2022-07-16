@@ -15,44 +15,29 @@
                 <h5 class="titulo">{{action|uppercase}} Gateways</h5> 
 
                <form [formGroup]="form" (ngSubmit)="saveGateway()">
-                <!-- <div class="input-group input-group-lg mb-3">                   
-                    <input  formControlName="serialNumber" type="text" minlength="2" maxlength="450" class="form-control" placeholder="Serial Number" >
-                  </div> -->
                   <mat-form-field appearance="outline" lass="input-group input-group-lg mb-3">
                     <mat-label>Serial Number</mat-label>
                     <input matInput formControlName="serialNumber" type="text" minlength="2" maxlength="450" style="width: 100% !important;" placeholder="Serial Number">
                     <mat-icon matSuffix>vpn_key</mat-icon>
-                    <!-- sentiment_very_satisfied -->
                     <mat-hint>Hint</mat-hint>            
                   </mat-form-field>
                   <mat-form-field appearance="outline" lass="input-group input-group-lg mb-3">
                     <mat-label>Name of Gateway</mat-label>
                     <input matInput formControlName="name" type="text" minlength="2" maxlength="450" style="width: 100% !important;" placeholder="Name of Gateway">
                     <mat-icon matSuffix>directions_bus</mat-icon>
-                    <!-- sentiment_very_satisfied -->
                     <mat-hint>Hint</mat-hint>            
                   </mat-form-field>
                   <mat-form-field appearance="outline" lass="input-group input-group-lg mb-3">
                     <mat-label>IPV4</mat-label>
                     <input matInput formControlName="ipV4" type="text" minlength="7" maxlength="15" size="15"  style="width: 100% !important;" placeholder="IPV4    Example: 10.0.0.1    Format: 000.000.000.000" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$">
                     <mat-icon matSuffix>desktop_windows</mat-icon>
-                    <!-- sentiment_very_satisfied -->
                     <mat-hint>Hint</mat-hint>            
                   </mat-form-field>
-
-                <!-- <div class="input-group input-group-lg mb-3">                   
-                    <input  formControlName="name" type="text" minlength="2" maxlength="50" class="form-control" placeholder="name" >
-                  </div> -->
-                  <!-- <div class="input-group input-group-lg mb-3">                   
-                     <input formControlName="ipV4"  type="text" class="form-control" placeholder="ipV4    Example: 10.0.0.1    Format: 000.000.000.000" > 
-                     <input formControlName="ipV4" type="number" class="input-box" placeholder="ipV4 xxx.xxx.xxx.xx" autocomplete="off" /> 
-                    <input formControlName="ipV4" type="text" minlength="7" maxlength="15" size="15" pattern="^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$" class="form-control" placeholder="ipV4    Example: 10.0.0.1    Format: 000.000.000.000">
-                  </div> -->
-
-                  
-                 
                   <div class="d-grid gap-2">
-                     <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
+                        <button [disabled]="this.form.invalid" mat-raised-button color="primary"  type="submit"> 
+                            <mat-icon color="white" style="margin-right: 4px !important; size: 0.7rem !important; margin-right: 5% !important;">
+                                favorite
+                              </mat-icon>                          
                         <i class="fa-solid fa-database"></i>&nbsp;Save</button>
                   </div>                
                </form> 
@@ -62,97 +47,39 @@
     <div class="col-lg-10">
         <div class="card">
             <div class="card-body">
-               <table class="table" style="color: black"> 
+               <h5 class="titulo">List of Gateways</h5> 
+               <table class="table"> 
                 <thead>
                     <tr>
-                      <th scope="col">Serial Number</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">IPV4</th>
-                   
-                    </tr>
-                  </thead>
-                
-                   <tbody >
-                       <tr mat-row class="selectforrow" *ngFor="let gateway of listGateways" (click)="onClickRow(gateway.serialNumber)" >
-                           <td >{{gateway.serialNumber}} </td>
-                           <td>{{gateway.name}} </td>
-                           <td>{{gateway.ipV4}}</td>
-                                
-                  
-                           <td>
-                            <mat-icon (click)="editGateway(gateway)">edit</mat-icon>
-                               <!-- <button class="btn btn-success" >Edit</button>                                -->
-                           </td>
-                           <td>
-                            <mat-icon color="warn" (click)="deleteGateway(gateway.serialNumber)">delete</mat-icon>
-                           <!-- <button class="btn btn-danger" (click)="deleteGateway(gateway.serialNumber)">
-                            
-                           </button> -->
-                           </td>
-                           <td>
-                            <mat-icon  (click)="getListDevicesOfGateway(gateway.serialNumber)" (click)="getGatewaySelected(gateway.serialNumber)">more_horiz</mat-icon>
-                            <!-- <button class="btn btn-info" >More...peripheral devices..</button> -->
-                            </td>
-
-                       </tr>
-                       
-                   </tbody>
-
-               </table>
-               <table  class="table" style="color: blueviolet"> 
-                <thead>
-                    <tr>
-                      <th scope="col">Serial number</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">IPV4</th>       
-                   
-                    </tr>
-                  </thead>                
-                   <tbody>
-                       <tr [(ngModel)]="GatewaySelected">
-                           <td>{{GatewaySelected.serialNumber}} </td>
-                           <td>{{GatewaySelected.name}}</td>
-                           <td>{{GatewaySelected.ipV4}}</td>                   
-               
-                       </tr>
-                       
-                   </tbody>
-                </table>
-                <table class="table" style="color: blueviolet">
-                <thead>
-                    <tr>
-                      <th scope="col">ID</th>
-                      <th scope="col">Vendor</th>
-                      <th scope="col">Status</th>
-                      <th scope="col">Date Created</th>
-                   
+                        <th scope="col">Serial Number</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">IPV4</th>
+                        <th scope="col">Actions</th>
+                                        
                     </tr>
                   </thead>
                 
                    <tbody>
-                       <tr *ngFor="let device of listDevicesOfGatewaybySerialNumber">
-                           <td>{{device.uid}} </td>
-                           <td>{{device.vendor}} </td>
-                           <td>{{device.status}}</td>
-                           <td>{{device.dateCreated}}</td>
-
-                           <!-- <td>
-                            <button class="btn btn-success" (click)="editDevice(device)">Edit</button>                               
-                        </td>
-                        <td>
-                        <button class="btn btn-danger" (click)="deleteGateway(gateway.serialNumber)">Delete</button>
-                        </td>
-                        <td>
-                         <button class="btn btn-info"  (click)="getListDevicesOfGateway(gateway.serialNumber)" (click)="getGatewaySelected(gateway.serialNumber)">More...peripheral devices..</button>
-                         </td> -->
-               
+                       <tr class="selectforrow" *ngFor="let listGateway of listGateways">
+                            <td>{{listGateway.serialNumber}} </td>   
+                            <td>{{listGateway.name}} </td>
+                            <td>{{listGateway.ipV4}}</td>
+                                              
+                           <td>
+                            <mat-icon class="mat-icon-action" color="primary" (click)="editGateway(listGateway)">edit</mat-icon>
+                            <mat-icon class="mat-icon-action" color="warn" (click)="deleteGateway(listGateway.serialNumber)">delete</mat-icon>
+                            <!-- <mat-icon class="mat-icon-action" color="primary" (click)="getListDevicesOfGateway(listGateway.serialNumber)">expand_more</mat-icon> -->
+                            <mat-icon class="mat-icon-action" color="primary" (click)="getListDevicesOfGateway(listGateway.serialNumber)">more_horiz</mat-icon>
+                           </td>
+                           
+                         
                        </tr>
                        
                    </tbody>
-                   
                </table>
             </div>
         </div>
 
     </div>
+
 </div>

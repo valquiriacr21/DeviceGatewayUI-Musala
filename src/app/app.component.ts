@@ -15,12 +15,23 @@ export class AppComponent {
   activeLink:any;
   background:any;
   listDevicesOfGatewaybySerialNumberFather: any;
+  listTabs: any[]=[
+    {value:'Gateways',name:'Gateways'},
+    {value:'Devices',name:'Devices'},
+    {value:'Peripherical Devices',name:'Peripherical Devices'},
+  ];
+  SelectTab:any;
 
   ngOnInit(): void {
     this.openGatewayList();
     this.activeLink="http://localhost:4200/gateways";
     this.links[0]="http://localhost:4200/gateways";
     this.links[1]="http://localhost:4200/devices";
+    this.SelectTab=this.listTabs[0].name;
+  }
+
+  SelectTabChange(tab:any){
+
   }
 
   constructor(private _gatewayService: GatewayDeviceService, private dialog:MatDialog){}
@@ -41,6 +52,7 @@ export class AppComponent {
   openDialog(){
     this.dialog.open(DialogComponent,{
         width:'30%'      
+        
     });
   }
 

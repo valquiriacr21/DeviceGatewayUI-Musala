@@ -1,6 +1,8 @@
-<h1 mat-dialog-title>{{action+' '+titleOfComponent+' Form'}}</h1>
+<h1 mat-dialog-title>
+  <mat-icon class="example-tab-icon" style="width:1.5rem;" >directions_bus</mat-icon>
+  {{action+' '+titleOfComponent}}</h1>
 <div mat-dialog-content>
-
+  <form [formGroup]="form" (ngSubmit)="saveGateway()">
     <mat-form-field appearance="outline">
         <mat-label>Serial Number</mat-label>
         <input matInput formControlName="serialNumber" type="text" minlength="2" maxlength="450" placeholder="Serial Number">
@@ -26,10 +28,16 @@
         <button mat-raised-button color="field" >Cancel</button>
     
       </button> -->
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <button mat-raised-button  type="submit" color="field" >Save</button>
-        <!-- <mat-icon>favorite</mat-icon> -->
-      </button>
+      <div mat-dialog-action [align]="'end-5'" >
+        <button mat-raised-button color="warn" mat-dialog-close class="button-dialog">Close</button>
+        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">        
+          <button mat-raised-button class="button-dialog-save" color="primary" class="button-dialog" type="submit" [disabled]="this.form.invalid"> 
+            <mat-icon color="white" style="margin-right: 4px !important; size: 0.7rem !important; margin-right: 5% !important;">
+              favorite
+            </mat-icon>
+            Save</button>
+        </button>
+      </div>
       <!-- <form [formGroup]="form" (ngSubmit)="saveGateway()">
         <div class="input-group input-group-lg mb-3">                   
             <input  formControlName="serialNumber" type="text" minlength="2" maxlength="450" class="form-control" placeholder="Serial Number" >
@@ -50,4 +58,5 @@
                 <i class="fa-solid fa-database"></i>&nbsp;Save</button>
           </div>                
        </form>  -->
+  </form>
 </div>

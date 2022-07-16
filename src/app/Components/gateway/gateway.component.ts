@@ -2,26 +2,59 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ChildActivationStart, RouterLink, RouterLinkActive } from '@angular/router';
 import { GatewayDeviceService } from 'src/app/Services/gateway-device.service';
+// import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-gateway',
   templateUrl: './gateway.component.html',
   styleUrls: ['./gateway.component.css']
 })
+
+// @Component({
+//   selector: 'table-expandable-rows-example',
+//   styleUrls: ['table-expandable-rows-example.css'],
+//   templateUrl: 'table-expandable-rows-example.html',
+//   animations: [
+//     trigger('detailExpand', [
+//       state('collapsed', style({height: '0px', minHeight: '0'})),
+//       state('expanded', style({height: '*'})),
+//       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+//     ]),
+//   ],
+// })
+// export class TableExpandableRowsExample {
+//   @Input() ELEMENT_DATA:GatewaysElement[]=[];
+//   dataSource = ELEMENT_DATA;
+//   columnsToDisplay = ['Serial Number', 'Name', 'IPV4'];
+//   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
+//   expandedElement: GatewaysElement | null;
+// }
+
+// export interface  GatewaysElement {
+//   serialNumber: string;
+//   name: string;
+//   ipv4: string;
+// }
+
+
 export class GatewayComponent implements OnInit {
-  // @Input() ListGatewayCaptures:any[]=[];
+  @Input() ListGatewayCaptures:any[]=[];
   @Output() parametrosSeleccionados=new EventEmitter<any>();
   listDevicesOfGatewaybySerialNumber:any[]=[];
   GatewaySelected:any;
   serialNumberOfGatewaySelected:any;
-
-  listGateways:any[]=[];
-  c:any[]=[];
+  @Output() ELEMENT_DATA:any[]=[];
+  @Output() listGateways:any[]=[];
+  // c:any[]=[];
   action='Add';
   form:FormGroup;
   id:number|undefined; 
   // row:any;
-  SelectedRow:any;
+  // SelectedRow:any;
+  // dataSource = this.ELEMENT_DATA;
+  // columnsToDisplay = ['Serial Number', 'Name', 'IPV4'];
+  // columnsToDisplayWithExpand = [this.columnsToDisplay, 'expand'];
+  // expandedElement: GatewaysElement | null;
   //DisplayState: 'none';
   // constructor(){}
   constructor(private fb:FormBuilder, private _gatewayDeviceService:GatewayDeviceService) {
@@ -35,17 +68,25 @@ export class GatewayComponent implements OnInit {
   ngOnInit(): void {
     this.getGateways();
     this.intialGateway();
+    // this.ELEMENT_DATA=this.listGateways;
   }
   
   onClickRow(serialNumber: string){
     console.log(serialNumber);
 
   }
+  // TableExpandableRowsExample() {
+  //   var dataSource = this.ELEMENT_DATA;
+  //   var columnsToDisplay = ['Serial Number', 'Name', 'IPV4'];
+  //   var columnsToDisplayWithExpand = [this.columnsToDisplay, 'expand'];
+  //   expandedElement: GatewaysElement | null;
+  // }
   
   getGateways(){
     this._gatewayDeviceService.getListGateways().subscribe(data=>{
       console.log(data);
       this.listGateways=data;
+      
       // this.ListGatewayCapture=data;
     },error=>{
       console.log(error);
@@ -105,8 +146,8 @@ export class GatewayComponent implements OnInit {
     this.id=gateway.serialNumber;
     this.form.patchValue({
       serialNumber: gateway.serialNumber,
-      ipV4:gateway.ipV4,
       name:gateway.name,      
+      ipV4:gateway.ipV4,
     })      
   }
   getGatewaySelected(serialNumber:number){

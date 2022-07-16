@@ -19,6 +19,9 @@ export class DeviceComponent implements OnInit {
     {value:'Offline',name:'Offline'},
     {value:'Online',name:'Online'},
    ];
+  //  SerialGatewaySelected:any[]=[
+  //   {serialNumber:'',name:'',ipV4:''},
+  //  ];
 // constructor(){}
   constructor(private fb:FormBuilder, private _gatewayDeviceService:GatewayDeviceService) {
     this.form=this.fb.group({
@@ -35,6 +38,8 @@ export class DeviceComponent implements OnInit {
     this.getGateways();
     this.StatusDeviceSelected=this.listStatus[0].name;
     this.SerialGatewaySelected=this.listGateways[0].serialNumber;
+    // this.SerialGatewaySelected.name=this.listGateways[0].name;
+    // this.SerialGatewaySelected.ipV4=this.listGateways[0].ipV4;
     var a=0;
   }
 

@@ -23,9 +23,15 @@ select{
 }
 
 .selectforrow:hover{
-    background-color: rgb(148, 88, 205) !important;
-    color: white !important;
+    background-color: rgb(215, 209, 250) !important;
+    /*color: white !important;*/
 }
 mat-form-field{
     width: 100% !important;
+}
+.mat-icon-action{
+    margin: 8px !important;
+}
+.mat-icon-action{
+    margin: 8px !important;
 }

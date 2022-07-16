@@ -15,42 +15,29 @@
                <h5 class="titulo">{{action|uppercase}} Device</h5> 
 
                 <form [formGroup]="form" (ngSubmit)="saveDevice()">
-                    <!-- <div class="input-group input-group-lg mb-2">                   
-                        <input  formControlName="vendor" type="text" minlength="2" maxlength="50" class="form-control" placeholder="Vendor" >
-                    </div> -->
                     <mat-form-field appearance="outline" lass="input-group input-group-lg mb-3">
                         <mat-label>Vendor Name</mat-label>
                         <input matInput formControlName="vendor" type="text" minlength="2" maxlength="50" style="width: 100% !important;" placeholder="Vendor Name">
                         <mat-icon matSuffix>people</mat-icon>
-                        <!-- sentiment_very_satisfied -->
                         <mat-hint>Hint</mat-hint>  
                     </mat-form-field>
-                    <mat-form-field appearance="outline" lass="input-group input-group-lg mb-3">
+                    
+                    <!-- <mat-form-field appearance="outline" lass="input-group input-group-lg mb-3">
                         <mat-label>Date of Created</mat-label>
                         <input matInput formControlName="dateCreated" type="datetime-local"  style="width: 100% !important;" placeholder="Date of Created">
-                        <!-- <mat-icon matSuffix>date_range</mat-icon> -->
-                        <!-- sentiment_very_satisfied -->
-                        <!-- <mat-hint>Hint</mat-hint>   -->
-                    </mat-form-field>
 
-
-                    <!-- <div class="input-group input-group-lg mb-2">                   
-                        <input formControlName="dateCreated"  type="datetime-local" class="form-control" placeholder="Date of Created" >
-                    </div> -->
-                    <!-- <div class="input-group input-group-lg mb-2">                   
-                        <input formControlName="status"  type="text" class="form-control" placeholder="Status Offline/Online" >
-                    </div> -->
-                    <!-- <select formControlName="status" name="GatewayStatus" [(ngModel)]="StatusDeviceSelected"  class="form-control form-control-lg select-option">
-                        <option [value]="status.value" *ngFor="let status of listStatus">{{status.name}}</option>
-                    </select> -->
-                    <!-- <mat-form-field appearance="fill">
-                        <mat-label>Status</mat-label>
-                        <select matNativeControl required formControlName="status" [(ngModel)]="StatusDeviceSelected">
-                        <option [value]="status.value" *ngFor="let status of listStatus">{{status.name}}</option>
-                        </select>
                     </mat-form-field> -->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Choose a created date</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="dateCreated" placeholder="Date of Created"
+                        >
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
 
-                    <mat-form-field appearance="fill">
+
+                    <mat-form-field appearance="outline">
                         <mat-label>Status Online|Offline</mat-label>
                         <mat-select required  formControlName="status" [(ngModel)]="StatusDeviceSelected" name="status">
                         <mat-option *ngFor="let status of listStatus" [value]="status.value">
@@ -62,22 +49,24 @@
                     <!-- <div class="input-group input-group-lg mb-2">                   
                         <input formControlName="gatewaySerialNumber"  type="text" class="form-control" placeholder="Serial Number of Gateway" >
                     </div> -->
-                    <!-- <mat-form-field appearance="fill">
+                    <mat-form-field appearance="outline">
                         <mat-label>Gateway Serial Number</mat-label>
                         <mat-select required formControlName="gatewaySerialNumber" [(ngModel)]="SerialGatewaySelected" name="gatewaySerialNumber">
-                            <mat-option *ngFor="let gateway of listGateways" [value]="gateway.name">
-                                {{gateway.serialNumber}}
+                            <mat-option *ngFor="let listgateway of listGateways" [value]="listgateway.serialNumber">
+                                {{listgateway.serialNumber}}
                             </mat-option>
                         </mat-select>
-                    </mat-form-field> -->
+                    </mat-form-field>
 
-                    <select required formControlName="gatewaySerialNumber" name="Gateway" [(ngModel)]="SerialGatewaySelected" class="form-control form-control-lg select-option">
+                    <!-- <select required formControlName="gatewaySerialNumber" name="Gateway" [(ngModel)]="SerialGatewaySelected" class="form-control form-control-lg select-option">
                         <option  *ngFor="let gateway of listGateways">{{gateway.serialNumber}}</option>
-                    </select>
+                    </select> -->
                     
                     <div class="d-grid gap-2">
-                        <button [disabled]="this.form.invalid" type="submit" class="btn btn-success btn-lg">
-                            <i class="fa-solid fa-database"></i>&nbsp;Save</button>
+                        <button [disabled]="this.form.invalid" mat-raised-button color="primary" type="submit" class="btn btn-success btn-lg">
+                            <mat-icon color="white" style="margin-right: 4px !important; size: 0.7rem !important; margin-right: 5% !important;">
+                                favorite
+                              </mat-icon>&nbsp;Save</button>
                     </div>                
                 </form>
             </div>
@@ -90,34 +79,29 @@
                <table class="table"> 
                 <thead>
                     <tr>
-                        <th scope="col">ID</th>
+                        <!-- <th scope="col">ID</th> -->
                         <th scope="col">Vendor</th>
                         <th scope="col">Status</th>
                         <th scope="col">Date of Created</th>
                         <th scope="col">Serial Number</th>
+                        <th scope="col">Actions</th>
                    
                     </tr>
                   </thead>
                 
                    <tbody>
                        <tr class="selectforrow" *ngFor="let listDevice of listDevices">
-                            <td>{{listDevice.uid}} </td>   
+                            <!-- <td>{{listDevice.uid}} </td>    -->
                             <td>{{listDevice.vendor}} </td>
                             <td>{{listDevice.status}}</td>
                             <td>{{listDevice.dateCreated}}</td>
                             <td>{{listDevice.gatewaySerialNumber}}</td>
                   
                            <td>
-                            <mat-icon (click)="editDevice(listDevice)">edit</mat-icon>
-                               <!-- <button class="btn btn-success" (click)="editDevice(listDevice)">Edit</button>                                -->
-                           </td>
-                           <td>
-                            <mat-icon color="warn" (click)="deleteDevice(listDevice.uid)">delete</mat-icon>
-                           <!-- <button class="btn btn-danger" (click)="deleteDevice(listDevice.uid)">Delete</button> -->
-                           </td>
-                         
-                       </tr>
-                       
+                            <mat-icon class="mat-icon-action" color="primary" (click)="editDevice(listDevice)">edit</mat-icon>
+                            <mat-icon class="mat-icon-action" color="warn" (click)="deleteDevice(listDevice.uid)">delete</mat-icon>
+                           </td>                         
+                       </tr>                       
                    </tbody>
                </table>
             </div>
