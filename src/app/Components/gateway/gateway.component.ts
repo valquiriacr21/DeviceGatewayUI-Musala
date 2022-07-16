@@ -3,9 +3,11 @@ import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { ChildActivationStart, RouterLink, RouterLinkActive, RouterLinkWithHref } from '@angular/router';
 import { GatewayDeviceService } from 'src/app/Services/gateway-device.service';
 // import {animate, state, style, transition, trigger} from '@angular/animations';
+//Paginator
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
+//Dialog
 import { DialogComponent } from '../dialog/dialog.component';
 import{MatDialogRef,MatDialog,MAT_DIALOG_DATA} from '@angular/material/dialog';
 
@@ -61,7 +63,6 @@ export class GatewayComponent implements OnInit {
 
   displayedColumns: string[] = ['serialNumber', 'name', 'ipV4', 'action'];
   dataSource = new MatTableDataSource<any>();
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   // row:any;
@@ -72,7 +73,8 @@ export class GatewayComponent implements OnInit {
   // expandedElement: GatewaysElement | null;
   //DisplayState: 'none';
   // constructor(){}
-  constructor(private fb:FormBuilder, 
+  constructor(
+    private fb:FormBuilder, 
     private _gatewayDeviceService:GatewayDeviceService,
     private dialog:MatDialog
     // @Inject(MAT_DIALOG_DATA) public editData:any,

@@ -9,3 +9,6 @@ mat-form-field{
 .button-dialog-save{
     margin-right: 20px !important;
 }
+.mat-icon-action{
+    margin: 8px !important;
+}
