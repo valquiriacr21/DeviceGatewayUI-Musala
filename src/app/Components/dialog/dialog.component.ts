@@ -25,9 +25,9 @@ export class DialogComponent implements OnInit
     this.titleOfComponent="Gateway";
     this.action="Add";
     this.form=this.fb.group({
-      serialNumber:['',Validators.required,Validators.minLength(2),Validators.maxLength(450)],
-      name:['',Validators.required,Validators.minLength(2),Validators.maxLength(50)],
-      ipV4:['',Validators.required,Validators.minLength(7),Validators.maxLength(15),Validators.pattern("^((\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$")]
+      serialNumber:['',Validators.required],
+      name:['',Validators.required],
+      ipV4:['',Validators.required]
     })
    }
 

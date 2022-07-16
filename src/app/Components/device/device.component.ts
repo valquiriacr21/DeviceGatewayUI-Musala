@@ -1,6 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GatewayDeviceService } from 'src/app/Services/gateway-device.service';
+//Paginator
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
+
+import{MatDialogRef,MatDialog,MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-device',
@@ -19,15 +25,22 @@ export class DeviceComponent implements OnInit {
     {value:'Offline',name:'Offline'},
     {value:'Online',name:'Online'},
    ];
-  //  SerialGatewaySelected:any[]=[
-  //   {serialNumber:'',name:'',ipV4:''},
-  //  ];
-// constructor(){}
-  constructor(private fb:FormBuilder, private _gatewayDeviceService:GatewayDeviceService) {
+
+   //paginator table
+//
+  displayedColumns: string[] = ['uid','vendor', 'status', 'dateCreated', 'gatewaySerialNumber','action'];
+  dataSource = new MatTableDataSource<any>();
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  
+  constructor(
+    private fb:FormBuilder, 
+    private _gatewayDeviceService:GatewayDeviceService,
+    private dialog:MatDialog
+    ) {
     this.form=this.fb.group({
       vendor:['',Validators.required],
       status:['',Validators.required],
-      // StatusDeviceSelected:['',Validators.required],
       dateCreated:['',Validators.required],
       gatewaySerialNumber:['',Validators.required]
     })
@@ -42,7 +55,18 @@ export class DeviceComponent implements OnInit {
     // this.SerialGatewaySelected.ipV4=this.listGateways[0].ipV4;
     var a=0;
   }
+  onClickRow(serialNumber: string){
+    console.log(serialNumber);
 
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
   // getGatewaySelected(){  
   //     this.GatewaySelected=this.listGateways[0];
   //   }
@@ -60,6 +84,9 @@ export class DeviceComponent implements OnInit {
     this._gatewayDeviceService.getListDevices().subscribe(data=>{
       console.log(data);
       this.listDevices=data;
+      this.dataSource=new MatTableDataSource(data);
+      this.dataSource.paginator=this.paginator;
+      this.dataSource.sort=this.sort;
     },error=>{
       console.log(error);
     })    
@@ -79,6 +106,7 @@ export class DeviceComponent implements OnInit {
         this.form.reset();
         this.StatusDeviceSelected=this.listStatus[0].name;
         this.SerialGatewaySelected=this.listGateways[0].serialNumber;
+        alert("Device Added succesfully");
       },error=>{
         console.log(error);
       })      
