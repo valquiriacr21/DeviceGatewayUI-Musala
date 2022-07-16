@@ -2,6 +2,7 @@ import { Component, OnInit, Input,Output } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { GatewayDeviceService } from 'src/app/Services/gateway-device.service';
 // import { GatewayComponent } from 'src/app/Components/gateway/gateway.component';
+import {MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog',
@@ -17,7 +18,9 @@ export class DialogComponent implements OnInit
   id:number|undefined; 
    @Input() listGateways:any[]=[];
   
-  constructor(private fb:FormBuilder, private _gatewayDeviceService:GatewayDeviceService) 
+  constructor(private fb:FormBuilder, 
+            private _gatewayDeviceService:GatewayDeviceService, 
+            private dialogRef : MatDialogRef<DialogComponent>) 
   {
     this.titleOfComponent="Gateway";
     this.action="Add";
@@ -43,7 +46,8 @@ export class DialogComponent implements OnInit
       console.log(error);
     })    
   }
-  saveGateway(){
+  addGateway(){
+    console.log(this.form.value);
     const gateway:any={
       serialNumber:this.form.get('serialNumber')?.value,
       name:this.form.get('name')?.value,
@@ -52,15 +56,21 @@ export class DialogComponent implements OnInit
 
     // if(this.id==undefined){
     //   //Add new gateway
-    //   this._gatewayDeviceService.saveGateway(gateway).subscribe(data=>{
-    //     this.getGateways();
-    //     this.form.reset();
+    // if(this.form.valid){
+      
+       this._gatewayDeviceService.saveGateway(gateway).subscribe(data=>{
+        this.getGateways();
+        alert("Gateway Added succesfully");
+        this.form.reset();
+        this.dialogRef.close('save');
         
-    //   },error=>{
-    //     console.log(error);
-    //   })      
-    // }
-  }
+      },error=>{
+        console.log(error);
+        alert(error);
+      })      
+    }
+  // }
+  
 
 }
 

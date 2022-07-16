@@ -116,6 +116,7 @@ export class GatewayComponent implements OnInit {
       this._gatewayDeviceService.saveGateway(gateway).subscribe(data=>{
         this.getGateways();
         this.form.reset();
+        alert("Gateway Added succesfully")
       },error=>{
         console.log(error);
       })      
@@ -127,6 +128,7 @@ export class GatewayComponent implements OnInit {
         this.action="Add";
         this.id=undefined;
         this.getGateways();
+        alert("Gateway Updated succesfully");
       },error=>{
         console.log(error);
       });      
