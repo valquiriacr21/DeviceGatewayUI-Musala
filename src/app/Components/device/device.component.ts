@@ -7,6 +7,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 
 import{MatDialogRef,MatDialog,MAT_DIALOG_DATA} from '@angular/material/dialog';
+// import { DialogDeviceComponent } from '../dialog-device/dialog-device.component';
 
 @Component({
   selector: 'app-device',
@@ -40,8 +41,8 @@ export class DeviceComponent implements OnInit {
     ) {
     this.form=this.fb.group({
       vendor:['',Validators.required],
-      status:['',Validators.required],
       dateCreated:['',Validators.required],
+      status:['',Validators.required],
       gatewaySerialNumber:['',Validators.required]
     })
    }
@@ -137,22 +138,37 @@ export class DeviceComponent implements OnInit {
   editDevice(device:any){
     this.action='Edit';
     this.id=device.uid;
-    if(this.listStatus[0].value==device.status)
-    {
-      this.StatusDeviceSelected=this.listStatus[0].value;
-    }
-    else{
-      this.StatusDeviceSelected=this.listStatus[1].value;
-    }
-    this.SerialGatewaySelected=device.gatewaySerialNumber;
-    this.form.patchValue({
+     this.form.patchValue({
       vendor:device.vendor,
       dateCreated:device.dateCreated,
-      StatusDeviceSelected:device.status.value,
-      SerialGatewaySelected:device.gatewaySerialNumber     
+      status:device.status,
+      gatewaySerialNumber:device.gatewaySerialNumber,     
     })  
+    // this.dialog.open(DialogDeviceComponent,{
+    //   width:'30%',
+    //   data:device,               
+    // }).afterClosed().subscribe(val=>{
+    //   // if(val==='update'){
+    //     this.getDevices();
+    //   // }
+    // });
     
   }
 
 
+/*    this.action='Edit';
+    this.id=gateway.serialNumber;
+    this.form.patchValue({
+      serialNumber: gateway.serialNumber,
+      name:gateway.name,      
+      ipV4:gateway.ipV4,
+    })  
+    this.dialog.open(DialogComponent,{
+      width:'30%',
+      data:gateway,            
+    }).afterClosed().subscribe(val=>{
+      // if(val==='update'){
+        this.getGateways();
+      // }
+    });*/
 }
